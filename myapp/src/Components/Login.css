@@ -1,0 +1,81 @@
+.log {
+    border: 1px solid rgb(205, 197, 197);
+    background-color: #00ffff;
+   max-width: 360px;
+    position: relative;
+    justify-content: center;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 6px;
+    border-radius: 10px;
+    box-shadow: 3px;
+  }
+  h4{
+    margin: auto;
+    text-decoration: underline;
+    text-align: center;
+  }
+  .container-form{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    gap: 15px;
+  }
+  .container-form input{
+    border-radius: 6px;
+    height: 25px;
+    
+  }
+  .submit{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: rgb(51, 51, 217);
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+  }
+  .remember{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    
+    
+  }
+  .remember .forget{
+    text-align: center;
+    height: fit-content;
+    margin-left: 65px;
+    margin-top: 12px;
+    
+  }
+  .remember p{
+    margin-left: 5px;
+    margin-top: 12px;
+  }
+  .remember input{
+    margin-top: 15px;
+    height: 25px;
+    cursor: pointer;
+  }
+  .forget a{
+    text-decoration: none;
+  }
+  .signup{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: green;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+  }
+  
+  
+  

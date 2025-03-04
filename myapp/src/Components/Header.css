@@ -1,0 +1,10 @@
+.wbplogo{
+display: flex;
+width: 90px;
+height:auto;
+/* margin-right: 3px; */
+}
+.webname{
+padding-top: 10px;
+margin: auto;
+}
