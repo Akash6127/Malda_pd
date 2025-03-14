@@ -1,3 +1,33 @@
-.col{
-    border: 2px solid black;
+.form_container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 30px;
+}
+.input_field{
+    display: flex;
+    gap: 50px;
+    width: 100%;
+    justify-content: center;
+}
+.first_division{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    height: 100%;
+}
+.second_division{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    height: 100%;
+}
+.label_input{
+    display: flex;
+    flex-direction: column;
 }

@@ -1,54 +1,64 @@
 import React from 'react'
-
+import './UserAddItem.css'
 function UserAddItem() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Item Added");
+  }
   return (
-    <div>
-      <form>
-        <div className='container border border-primary mt-3 '>
-          <div className='row'>
-          <div className='col'> <label>Item Id</label>
-            <input type='text' /></div>
-          <div className='col'>  <label>Serial No.</label>
-            <input type='text' /></div>
+
+    <form onSubmit={handleSubmit}>
+      <div className='form_container'>
+        <div className='input_field' >
+          <div className='first_division'>
+
+            <div className='label_input'> <label>Item Id</label>
+              <input type='text' /></div>
+            <div className='label_input'>  <label>Serial No.</label>
+              <input type='text' /></div>
+
+
+            <div className='label_input'> <label>Hardware Name</label>
+              <input type='text' /></div>
+            <div className='label_input'>  <label>Model Name</label>
+              <input type='text' /></div>
+
+          </div>
+          <div className='second_division'>
+            <div className='label_input'>
+              <label>Service Type</label>
+              <select>
+                <option>service1</option>
+                <option>service2</option>
+                <option>service3</option>
+                <option>service4</option>
+              </select>
             </div>
-            <div className='row'>
-          <div className='col'> <label>Hardware Name</label>
-            <input type='text' /></div>
-          <div className='col'>  <label>Model Name</label>
-            <input type='text' /></div>
-          <div>
+            <div className='label_input'>
+              <label>Issue Date</label>
+              <input type='date' />
+            </div>
+
+
+
+            <div className='label_input'>
+              <label>Choose Current situation</label>
+              <div>
+              <input type='radio' id='active' name='status_type' value="active" /><label>Active</label>
+              <input type='radio' id='inactive'name='status_type'  value="inactive" /><label>InActive</label>
+              </div>
+            </div>
+            <div className='label_input'>
+              <label>Issued By</label>
+              <input type='text' />
+            </div>
+
           </div>
-          <div className='row'>
-          <div className='col'>
-            <label>Service Type</label>
-            <select>
-              <option>service1</option>
-              <option>service2</option>
-              <option>service3</option>
-              <option>service4</option>
-            </select>
-          </div>
-          <div className='col'>
-            <label>Issue Date</label>
-            <input type='date' />
-          </div>
-          </div>
-          </div>
-          <div className='row'>
-          <div className='col'>
-            <label>Choose Current situation</label>
-            <input type='radio' id='active' value="active" /><label>Active</label>
-            <input type='radio' id='inactive' value="inactive" /><label>InActive</label>
-          </div>
-        <div className='col'>
-          <label>Issued By</label>
-          <input type='text'/>
         </div>
-        </div>
-        </div>
-        <div></div>
-      </form>
-    </div>
+        <div className='submit_field'><button type='submit' className='btn btn-primary'>Submit</button></div>
+      </div>
+    </form>
+
   )
 }
 
