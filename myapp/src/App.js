@@ -11,6 +11,7 @@ import Login from './Components/Login.jsx';
 import Register from './Components/Register'
 import { useAuth } from './context/AuthContext.jsx'
 import DashboardRoutes from './DashboardRoutes.js'
+import UserAddItem from './Components/UserDashboard/UserAddItem.jsx'
 
 function App() {
   const {user}= useAuth();
@@ -31,6 +32,7 @@ function App() {
       <Route path="/link/telecom" element={<Telecom />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      
     
    </Routes>
 

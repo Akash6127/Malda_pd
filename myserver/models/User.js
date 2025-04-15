@@ -1,5 +1,4 @@
-import mongoose from 'mongoose';
-
+import mongoose, { Schema } from 'mongoose';
 const userSchema = new mongoose.Schema({ 
 
     name: { type: String, required: true,unique:true },  
@@ -7,6 +6,7 @@ const userSchema = new mongoose.Schema({
     email: { type: String,  required: true, unique:true}, 
     role: { type: String,  required: true,enum:["admin","user"]},
     profileImage: { type: String},
+    Items:[{type:Schema.Types.ObjectId,ref:"Item"}],
     username: { type: String, unique: true, sparse: true } ,
     createdAt: { type: Date, default: Date.now},
     updatedAt: { type: Date, default: Date.now},

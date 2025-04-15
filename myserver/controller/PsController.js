@@ -93,7 +93,8 @@ const deletePoliceStation = async(req,res)=>{
         const id = req.params.id;
         
         const newpoliceStation = await PoliceStation.findByIdAndDelete({_id:id});
-        return res.json({ success: true, data: newpoliceStation });
+       
+        return res.json({ success: true, data: newpoliceStation});
      
     
     } catch (error) {
