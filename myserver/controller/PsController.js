@@ -1,6 +1,7 @@
 import PoliceStation from "../models/PsModel.js";
 import User from "../models/User.js"
 import bcrypt from 'bcrypt'
+import Item from "../models/Item_model.js"
 
 const getPoliceStation = async (req,res) => {
     try {
@@ -93,6 +94,10 @@ const deletePoliceStation = async(req,res)=>{
         const id = req.params.id;
         
         const newpoliceStation = await PoliceStation.findByIdAndDelete({_id:id});
+        const user = await User.findByIdAndDelete({_id:newpoliceStation.userID});
+        const newItems = await Item.deleteMany({location:newpoliceStation.userID});
+        await newItems.save();
+        await user.save();
        
         return res.json({ success: true, data: newpoliceStation});
      

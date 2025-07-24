@@ -35,10 +35,14 @@ const DashboardHome = () => {
     
 
   }, [])
+
+console.log("items are: ",items);
+
+
   return (
 
 <>
-<table>
+<table style={{marginTop:"10px"}}>
   <tr>
     <th>Item Id</th>
     <th>Hardware Name</th>
@@ -48,21 +52,31 @@ const DashboardHome = () => {
     <th>Location</th>
     <th>Active/Inactive</th>
     <th>Issued By</th>
-    <th>Issued Date</th>
+    <th>Issued Date and Time</th>
   </tr>
-  {items.map((product,index)=>(
-    <tr key={index}>
-      <td>{product.itemId}</td>
-      <td>{product.hardwareName}</td>
-      <td>{product.modelName}</td>
-      <td>{product.serialNo}</td>
-      <td>{product.serviceType}</td>
-      <td>{product.location.name}</td>
-      <td>{product.present_status}</td>
-      <td>{product.IssuedBy}</td>
-      <td>{product.updatedAt}</td>
-    </tr>
-  ))}
+  {items.map((product, index) => (
+  <tr key={index}>
+    <td>{product.itemId}</td>
+    <td>{product.hardwareName}</td>
+    <td>{product.modelName}</td>
+    <td>{product.serialNo}</td>
+    <td>{product.serviceType}</td>
+    <td>{product.location?.name}</td>
+    <td>{product.present_status}</td>
+    <td>{product.IssuedBy}</td>
+    <td>
+    {new Date(product.date).toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true,
+      })}<p style={{color:"tomato"}}>{product.EditedBy?"Edited":""}</p>
+    </td>
+  </tr>
+))}
+
 </table>
 </>
   )

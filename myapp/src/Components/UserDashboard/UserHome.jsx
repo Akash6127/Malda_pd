@@ -4,8 +4,17 @@ import axios from 'axios'
 
 
 function UserHome() {
-  const[psItems,setPsItems]=useState([])
+  const navigate = useNavigate();
+  const[psItems,setPsItems]=useState([]);
+  const [item_ID, setItem_ID] = useState();
+  
   useEffect(() => {
+      const token = localStorage.getItem("Token");
+  if (!token) {
+    console.log("token is out.")
+    navigate('/login');
+    return;
+  }
     const fetchItem = async () =>{
 
     
@@ -18,6 +27,7 @@ function UserHome() {
       if(response.data.success){
         console.log(response.data.data);
         setPsItems(response.data.data);
+        setItem_ID(response.data?.data?._id);
         
       }
     }catch(error){
@@ -29,10 +39,16 @@ function UserHome() {
 
   }, []);
   console.log(psItems);
- const navigate = useNavigate();
+ 
  function handleClick(){
   navigate('/user-dashboard/userhome/additem')
  }
+
+function handleEdit(){
+  navigate(`/user-dashboard/userhome/additem`)
+}
+
+
   return (
     <>
     <div className='mt-3 d-flex justify-content-center'>
@@ -45,7 +61,7 @@ function UserHome() {
         <button className='btn btn-dark'onClick={handleClick}>Add Item</button>
        
     </div>
-    <table>
+    <table style={{marginTop:"10px"}}>
     <tr>
       <th>Item Id</th>
       <th>Hardware Name</th>
@@ -54,7 +70,8 @@ function UserHome() {
       <th>Service Type</th>
       <th>Active/Inactive</th>
       <th>Issued By</th>
-      <th>Issued Date</th>
+      <th>Issued Date and Time</th>
+      <th>Actions</th>
     </tr>
     {psItems.map((product,index)=>(
       <tr key={index}>
@@ -65,7 +82,17 @@ function UserHome() {
         <td>{product.serviceType}</td>
         <td>{product.present_status}</td>
         <td>{product.IssuedBy}</td>
-        <td>{product.updatedAt}</td>
+        <td>
+    {new Date(product.date).toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true,
+      })}
+    </td>
+    <td style={{display:"flex",justifyContent:"center"}}>{product.EditedBy?<button style={{backgroundColor:'yellow'}} onClick={()=> navigate(`/user-dashboard/userhome/additem/${product._id}`)}>Edited</button>:<button onClick={()=> navigate(`/user-dashboard/userhome/additem/${product._id}`)}>Edit</button>}</td>
       </tr>
     ))}
   </table>

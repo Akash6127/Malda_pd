@@ -15,6 +15,7 @@ import UserRequisition from './Components/UserDashboard/UserRequisition.jsx'
 import Vendor from './Components/UserDashboard/Vendor.jsx'
 import Profile from './Components/UserDashboard/Profile.jsx'
 import UserAddItem from './Components/UserDashboard/UserAddItem.jsx'
+import UserEditItem from './Components/UserDashboard/UserEditItem.jsx'
 
 function DashboardRoutes() {
   return (
@@ -43,6 +44,7 @@ function DashboardRoutes() {
             <Route path='/user-dashboard/settings/profile' element={<Profile/>}/>
             <Route path='/user-dashboard/settings/changepassword' element={<ChangePassword/>}/>
             <Route path='/user-dashboard/userhome/additem' element={<UserAddItem/>}/>
+            <Route path='/user-dashboard/userhome/additem/:item_ID' element={<UserEditItem/>}/>
 
             </Route>
             

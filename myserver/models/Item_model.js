@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import { Schema } from 'mongoose'
+import User from './User.js'
 // import PoliceStation from './PsModel';
 
 const ItemSchema = new mongoose.Schema({
@@ -11,6 +12,8 @@ const ItemSchema = new mongoose.Schema({
     modelName:{type:String,required:true},
     IssuedBy:{type:String,required:true},
     present_status:{type:String,required:true},
+    date:{type:Date,default:Date.now},
+    EditedBy:{type:String,default:""},
     createdAt: {
         type: Date,
         default: Date.now
