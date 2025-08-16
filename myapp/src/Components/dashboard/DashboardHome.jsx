@@ -35,7 +35,25 @@ const DashboardHome = () => {
     
 
   }, [])
-
+const DeleteItem = async (id) => {
+    try {
+      const response = await axios.delete(`http://localhost:4000/api/admin/deleteitem/${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("Token")}`
+        }
+      });
+      if (response.data.success) {
+        console.log("Item deleted successfully");
+        alert("Item deleted  and moved to Workshop successfully");
+        setItems(prevItems => prevItems.filter(item => item._id !== id));
+      } else {
+        console.error("Failed to delete item:", response.data.error);
+      }
+    } catch (error) {
+      console.error("Error deleting item:", error);
+      // alert("Error deleting item");
+    }
+  };
 console.log("items are: ",items);
 
 
@@ -50,9 +68,11 @@ console.log("items are: ",items);
     <th>Serial Number</th>
     <th>Service Type</th>
     <th>Location</th>
-    <th>Active/Inactive</th>
+    
     <th>Issued By</th>
     <th>Issued Date and Time</th>
+    <th>Active/Inactive</th>
+    <th>Actions</th>
   </tr>
   {items.map((product, index) => (
   <tr key={index}>
@@ -62,10 +82,10 @@ console.log("items are: ",items);
     <td>{product.serialNo}</td>
     <td>{product.serviceType}</td>
     <td>{product.location?.name}</td>
-    <td>{product.present_status}</td>
+            
     <td>{product.IssuedBy}</td>
     <td>
-    {new Date(product.date).toLocaleString('en-US', {
+    {new Date(product.updatedAt).toLocaleString('en-US', {
         year: 'numeric',
         month: 'short',
         day: 'numeric',
@@ -74,6 +94,8 @@ console.log("items are: ",items);
         hour12: true,
       })}<p style={{color:"tomato"}}>{product.EditedBy?"Edited":""}</p>
     </td>
+    <td>{product.present_status === "active"?<span style={{width:"25px",height:"25px",borderRadius:"100%",backgroundColor:"green",display:"block"}}></span>:<span style={{width:"25px",height:"25px",borderRadius:"100%",backgroundColor:"red",display:"block"}}></span>}</td>
+    <td><button>Pending</button><button onClick={()=>DeleteItem(product._id)}>Move</button></td>
   </tr>
 ))}
 

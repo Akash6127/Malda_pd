@@ -1,10 +1,10 @@
 import mongoose from 'mongoose'
 import { Schema } from 'mongoose'
-import User from './User.js'
 
 
-const ItemSchema = new mongoose.Schema({
-    location:{type:Schema.Types.ObjectId, ref:"User"},
+const WorkshopSchema = new mongoose.Schema({
+  
+   location:{type:String,required:true},
     itemId:{type:String,required:true},
     serialNo:{type:String,required:true},
     hardwareName:{type:String,required:true},
@@ -22,8 +22,6 @@ const ItemSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-
-
 });
-const Item = mongoose.model("item",ItemSchema);
-export default Item;
+
+export default mongoose.model("workshop", WorkshopSchema);

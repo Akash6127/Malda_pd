@@ -68,9 +68,10 @@ function handleEdit(){
       <th>Model</th>
       <th>Serial Number</th>
       <th>Service Type</th>
-      <th>Active/Inactive</th>
+      
       <th>Issued By</th>
       <th>Issued Date and Time</th>
+      <th>Active/Inactive</th>
       <th>Actions</th>
     </tr>
     {psItems.map((product,index)=>(
@@ -80,10 +81,10 @@ function handleEdit(){
         <td>{product.modelName}</td>
         <td>{product.serialNo}</td>
         <td>{product.serviceType}</td>
-        <td>{product.present_status}</td>
+       
         <td>{product.IssuedBy}</td>
         <td>
-    {new Date(product.date).toLocaleString('en-US', {
+    {new Date(product.updatedAt).toLocaleString('en-US', {
         year: 'numeric',
         month: 'short',
         day: 'numeric',
@@ -92,7 +93,8 @@ function handleEdit(){
         hour12: true,
       })}
     </td>
-    <td style={{display:"flex",justifyContent:"center"}}>{product.EditedBy?<button style={{backgroundColor:'yellow'}} onClick={()=> navigate(`/user-dashboard/userhome/additem/${product._id}`)}>Edited</button>:<button onClick={()=> navigate(`/user-dashboard/userhome/additem/${product._id}`)}>Edit</button>}</td>
+     <td>{product.present_status === "active"?<span style={{width:"25px",height:"25px",borderRadius:"100%",backgroundColor:"green",display:"block"}}></span>:<span style={{width:"25px",height:"25px",borderRadius:"100%",backgroundColor:"tomato ",display:"block"}}></span>}</td>
+    <td style={{display:"flex"}}>{product.EditedBy?<button style={{backgroundColor:'yellow'}} onClick={()=> navigate(`/user-dashboard/userhome/additem/${product._id}`)}>Edited</button>:<button onClick={()=> navigate(`/user-dashboard/userhome/additem/${product._id}`)}>Edit</button>}</td>
       </tr>
     ))}
   </table>
