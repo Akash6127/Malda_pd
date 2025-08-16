@@ -16,6 +16,7 @@ import Vendor from './Components/UserDashboard/Vendor.jsx'
 import Profile from './Components/UserDashboard/Profile.jsx'
 import UserAddItem from './Components/UserDashboard/UserAddItem.jsx'
 import UserEditItem from './Components/UserDashboard/UserEditItem.jsx'
+import Workshop from './Components/dashboard/Workshop.jsx'
 
 function DashboardRoutes() {
   return (
@@ -32,6 +33,7 @@ function DashboardRoutes() {
             <Route path='/admin-dashboard/settings/addps' element={<AddPoliceStation/>}/>
             <Route path='/admin-dashboard/settings/change-password' element={<ChangePassword/>}/>
             <Route path='/admin-dashboard/policestation/:id' element={<Editps/>}/>
+            <Route path='/admin-dashboard/settings/workshop' element={<Workshop/>}/>
             </Route>
             <Route path='/user-dashboard' element={<PrivateRoutes>
                 <RolebaseRoutes requiredRole={["user"]}>
@@ -45,7 +47,7 @@ function DashboardRoutes() {
             <Route path='/user-dashboard/settings/changepassword' element={<ChangePassword/>}/>
             <Route path='/user-dashboard/userhome/additem' element={<UserAddItem/>}/>
             <Route path='/user-dashboard/userhome/additem/:item_ID' element={<UserEditItem/>}/>
-
+            
             </Route>
             
         </Routes>

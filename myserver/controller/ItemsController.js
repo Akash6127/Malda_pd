@@ -1,5 +1,6 @@
 import Item from '../models/Item_model.js'
 import User from '../models/User.js'
+import Workshop from '../models/Workshop.js';
 
 
 const AddItems = async(req,res)=>{
@@ -76,7 +77,7 @@ const UpdateItem = async (req, res) => {
         modelName: model_name,
         IssuedBy: issuedBy,
         present_status: status,
-        createdAt: date,
+        updatedAt: date,
         EditedBy:EditedBy
       },
       { new: true } // returns the updated document
@@ -98,25 +99,40 @@ const UpdateItem = async (req, res) => {
 const DeleteItem = async (req, res) => {
   try {
     const itemId = req.params.id;
+    console.log("Deleting item with ID:", itemId);
 
-    const item = await Item.findByIdAndDelete(itemId);
+    // Find the item first
+    const item = await Item.findById(itemId);
 
     if (!item) {
       return res.status(404).json({ success: false, error: "Item not found" });
     }
 
-    // Optional: Remove item reference from the user's Items array
-    await User.findByIdAndUpdate(item.location, {
-      $pull: { Items: item._id }
-    });
+    // Create a copy of item in Workshop model
+    const workshopItem = new Workshop(item.toObject());
+    await workshopItem.save();
 
-    return res.status(200).json({ success: true, message: "Item deleted successfully" });
+    // Delete the item from Item collection
+    await Item.findByIdAndDelete(itemId);
+
+    // If item has a user/location reference, remove it from their Items array
+    if (item.location) {
+      await User.findByIdAndUpdate(item.location, {
+        $pull: { Items: item._id }
+      });
+    }
+
+    return res.status(200).json({ 
+      success: true, 
+      message: "Item moved to Workshop and deleted successfully" 
+    });
 
   } catch (error) {
     console.error("Delete error:", error.message);
     return res.status(500).json({ success: false, error: "Server error" });
   }
 };
+
 
 
 

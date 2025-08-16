@@ -6,6 +6,7 @@ import authroute from './routes/auth.js';
 import policeStationRoute from './routes/PoliceStation.js';
 import connectToDatabase from './db/db.js';
 import ItemRoute from "./routes/ItemRoute.js" 
+import WorkshopRoute from './routes/Workshoproute.js';
 
 const app = express();
 app.use(cors());
@@ -18,6 +19,8 @@ app.use("/api/auth",authroute)
 app.use("/api/policestation",policeStationRoute)
 app.use("/api/users",ItemRoute);
 app.use("/api/admin",ItemRoute)
+app.use("/api/workshopitem",WorkshopRoute)
+
 
 
 const myEmitter = new EventEmitter();

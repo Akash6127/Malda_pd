@@ -35,6 +35,7 @@ const Admin_dashboard =()=> {
            <NavDropdown  className='text-white' title="Settings" to="/link" id="navbarScrollingDropdown">
            <NavDropdown.Item onClick={()=>{navigate('/admin-dashboard/settings/addps')}}>Add Police Station</NavDropdown.Item> 
             <NavDropdown.Item  onClick={()=>{navigate('/admin-dashboard/settings/change-password')}} >Change Password</NavDropdown.Item>
+            <NavDropdown.Item  onClick={()=>{navigate('/admin-dashboard/settings/workshop')}} >Workshop</NavDropdown.Item>
                 
              
            
